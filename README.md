@@ -106,7 +106,8 @@ cd cb_frontend
 npm install
 npm run dev
 ```
-
+## 📸 Screenshot
+![Chatbot UI](chatbot_ui.png)
 ---
 
 ## 💡 Example Questions
