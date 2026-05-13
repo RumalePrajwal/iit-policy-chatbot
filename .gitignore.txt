@@ -1,0 +1,40 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs / local outputs
+*.log
+feedback_log.json
+*.sqlite3
+
+# Node / frontend
+node_modules/
+.next/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Data / temporary artifacts
+*.tmp
+*.bak
+
+# Jupyter
+.ipynb_checkpoints/
