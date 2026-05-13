@@ -146,17 +146,26 @@ Create a `.env` file in the project root and add the required keys.
 Example:
 
 ```env
-AZURE_OPENAI_API_KEY=your_key
-AZURE_OPENAI_ENDPOINT=your_endpoint
-AZURE_OPENAI_API_VERSION=2024-02-01
-AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4.1
-AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-small
+# OpenAI
+OPENAI_API_KEY=your_openai_key_here
+OPENAI_EMBED_MODEL=text-embedding-3-small
 
-ELASTIC_URL=your_elastic_url
-ELASTIC_API_KEY=your_elastic_api_key
-ELASTIC_INDEX=iit_policy_chunks
+OPENAI_CHAT_MODEL=gpt-4o-mini
+USE_LLM_INTENT=true
+USE_LLM_SLOTS=true
+USE_LLM_NARRATION=true
+USE_LLM_ANSWER_SYNTHESIS=true
+USE_ES_KNN=true
+ENABLE_EVAL_HACKS=true
 
-DATABASE_URL=your_neon_or_postgres_url
+# Policy rules path (optional)
+POLICY_RULES_PATH=backend/rules/policy_rules.yaml
+
+# ElasticSearch (docker-compose defaults)
+ES_URL=http://localhost:9200
+ES_INDEX=iit_policy_chunks
+ES_USERNAME=elastic
+ES_PASSWORD=changeme
 ```
 
 If your code still supports standard OpenAI fallback or username/password Elasticsearch auth, keep only the variables that match your current backend configuration.
@@ -166,8 +175,9 @@ If your code still supports standard OpenAI fallback or username/password Elasti
 If Elasticsearch is running locally or on Elastic Cloud, create the index and ingest the corpus:
 
 ```bash
-python ingest/es_setup.py
-python ingest/ingest.py
+docker compose up -d
+python -m ingest.es_setup
+python -m ingest.ingest
 ```
 
 ### 6. Run the FastAPI backend
